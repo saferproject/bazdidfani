@@ -32,12 +32,12 @@ const App = () => {
             color: "#162864",
             overflow: "hidden",
             border: "1px solid #e0e0e0",
-            fontFamily: '"Yekan-bold", "Dana", "Peyda", roboto !important', // اضافه کردن !important
+            fontFamily: '"Yekan-bold",roboto !important', // اضافه کردن !important
           },
           cell: {
             color: "#162864",
             fontWeight: "normal !important",
-            fontFamily: '"Yekan-bold", "Dana", "Peyda", roboto !important', // اضافه کردن !important
+            fontFamily: '"Yekan-bold", roboto !important', // اضافه کردن !important
             position: "relative",
             "&:not(:last-child)::after": {
               content: '""',
@@ -51,7 +51,7 @@ const App = () => {
           },
           columnHeader: {
             fontWeight: "600 !important",
-            fontFamily: '"Yekan-bold", "Dana", "Peyda", roboto !important', // اضافه کردن !important
+            fontFamily: '"Yekan-bold",roboto !important', // اضافه کردن !important
             backgroundColor: "#fafafa",
             color: "#162864",
             "&:focus": {
@@ -67,32 +67,36 @@ const App = () => {
             },
           },
         },
-      },
+      }
     },
     typography: {
       fontFamily: "Yekan",
-      color: "#162864",
+      color: "#162864"
     },
     palette: {
       primary: {
-        main: "#259FA2",
-        mainDark: "#21888B",
-        mainLight: "#20B9B3",
+        light: "#30eca5",
+        main: "#00eb93",
+        dark: "#00be77",
       },
-      error: {
-        main: "#C80930",
+      secondary: {
+        light: "#79716B",
+        main: "#57534D",
+        contrastText: "#fff",
       },
-      danger: {
-        main: "#ED1844",
+
+      info: {
+        light: "#AEBCD3",
+        main: "#8DA2C6",
+        dark: "#7474C1",
+        contrastText: "#fff",
       },
-      warning: {
-        main: "#FFBE11",
-      },
-      disable: {
-        main: "#919BB3",
+      text: {
+        disabled: "#9da6ad",
       },
     },
   });
+
 
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -115,7 +119,8 @@ const App = () => {
             </ThemeProvider>
           </CacheProvider>
         </AuthProvider>
-      </QueryClientProvider>    </>
+      </QueryClientProvider>
+    </>
   );
 };
 
