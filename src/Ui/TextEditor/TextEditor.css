@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+@media print {
+	body {
+		margin: 0 !important;
+	}
+}
+
+:root {
+	--ck-content-font-family: 'Yekan', 'Yekan-bold', 'Yekan-ex-bold', 'Yekan-light', "Alibaba", "Rokh", 'Rokh-bold', 'Rokh-light', 'Lato', sans-serif;
+}
+
+.main-container {
+	font-family: var(--ck-content-font-family);
+	width: fit-content;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 100px;
+}
+
+.editor-container_classic-editor .editor-container__editor {
+	min-width: 700px;
+	max-width: 700px;
+}
+
+.editor-container__sidebar_ckeditor-ai:has(.ck-tabs.ck-hidden) {
+	max-width: 0;
+	min-width: 0;
+}
+
+.ck-editor__editable {
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+/* برای اینکه placeholder هم راست‌چین بشه */
+.ck-editor__editable.ck-placeholder::before {
+    text-align: right;
+    direction: rtl;
+}
