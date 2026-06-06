@@ -36,7 +36,7 @@ const CustomButton = ({
             disabled={disable || loading}
             sx={{
                 border: variant === "contained" ? 'none' : "",
-                fontColor: fontColor ? fontColor : "white",
+                color: fontColor ? fontColor : "white",
                 backgroundColor: bgColor ? bgColor : "",
                 fontFamily: "Yekan-bold",
                 paddingX: (endIcon || startIcon) ? "25px" : "",

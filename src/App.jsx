@@ -32,12 +32,12 @@ const App = () => {
             color: "#162864",
             overflow: "hidden",
             border: "1px solid #e0e0e0",
-            fontFamily: '"Yekan-bold",roboto !important', // اضافه کردن !important
+            fontFamily: '"Yekan Bakh FaNum",roboto !important', // اضافه کردن !important
           },
           cell: {
             color: "#162864",
             fontWeight: "normal !important",
-            fontFamily: '"Yekan-bold", roboto !important', // اضافه کردن !important
+            fontFamily: '"Yekan Bakh FaNum", roboto !important', // اضافه کردن !important
             position: "relative",
             "&:not(:last-child)::after": {
               content: '""',
@@ -51,7 +51,7 @@ const App = () => {
           },
           columnHeader: {
             fontWeight: "600 !important",
-            fontFamily: '"Yekan-bold",roboto !important', // اضافه کردن !important
+            fontFamily: '"Yekan Bakh FaNum",roboto !important', // اضافه کردن !important
             backgroundColor: "#fafafa",
             color: "#162864",
             "&:focus": {
@@ -70,7 +70,7 @@ const App = () => {
       }
     },
     typography: {
-      fontFamily: "Yekan",
+      fontFamily: "Yekan Bakh FaNum",
       color: "#162864"
     },
     palette: {

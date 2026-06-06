@@ -3,7 +3,6 @@ import babel from '@rolldown/plugin-babel'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'vite'
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
@@ -11,6 +10,7 @@ export default defineConfig({
     babel({ presets: [reactCompilerPreset()] })
   ],
   server: {
-    port: 5175
-  }
+    port: 3004,
+    host: true
+  },
 })

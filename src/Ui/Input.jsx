@@ -13,7 +13,7 @@ const Input = ({
     type = "text",
     additionalText,
     bgColor = "",
-    size = "medium",
+    size = "small",
     multiLine = false,
     rows = 4,
     defaultValue = "",
@@ -40,7 +40,7 @@ const Input = ({
                         "& .MuiOutlinedInput-root": {
                             borderRadius: size === "small" ? "10px" : "17px",
                             // fontSize : "0.9rem",
-                            fontFamily: "yekan",
+                            // fontFamily: "Yekan Bakh FaNum",
                             "& fieldset": {
                                 borderColor: "oklch(92% 0.004 286.32)",
                             },
@@ -50,13 +50,13 @@ const Input = ({
 
                         },
                         "& .MuiInputLabel-root": {
-                            fontFamily: "yekan",
+                            // fontFamily: "Yekan Bakh FaNum",
                             fontSize: size === "small" ? "0.8rem" : "0.95rem"
                         },
                         "& .MuiInputBase-root": { height: "auto", maxHeight: "none" },
                         "& .MuiInputBase-input": {
                             direction: isLeftToRight ? "rtl" : "ltr",
-                            fontFamily: "yekan",
+                            // fontFamily: "Yekan Bakh FaNum",
                         },
                     }}
                     autoFocus={autoFocus}
