@@ -12,9 +12,10 @@ import { IoShieldOutline } from "react-icons/io5";
 import { RiArrowLeftLongLine } from "react-icons/ri";
 import { FaArrowDown } from "react-icons/fa6";
 import { ThemeConsumer } from "styled-components";
+import { SendOtp } from "../../../API/EndPoints/Auth/Auth";
 
 const LoginWithOTPCode = z.object({
-    phone: z
+    mobile: z
         .string()
         .min(1, "شماره موبایل الزامی است")
         .regex(/^09\d{9}$/, "شماره موبایل نامعتبر است")
@@ -38,7 +39,7 @@ const Login = () => {
     const { control, handleSubmit, formState: { errors }, setValue } = useForm({
         resolver: zodResolver(LoginWithOTPCode),
         defaultValues: {
-            phone: "",
+            mobile: "",
         },
     });
 
@@ -61,7 +62,7 @@ const Login = () => {
     useEffect(() => {
         const phone = localStorage.getItem('otpPhone');
         if (phone) {
-            setValue('phone', phone);
+            setValue('mobile', mobile);
         }
     }, [setValue]);
 
@@ -98,21 +99,21 @@ const Login = () => {
         return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
     };
 
-    // const { mutate: login, isLoading: loginLoading } = LoginWithOTP({
-    //     onSuccess: async (data) => {
-    //         const phoneValue = control._formValues.phone;
+    const { mutate: login, isLoading: loginLoading } = SendOtp({
+        onSuccess: async (data) => {
+            const phoneValue = control._formValues.phone;
 
-    //         setIsResetCode(false)
-    //         setShowOtp(true);
-    //         setSavedPhone(phoneValue);
-    //         startTimer();
-    //         ``
-    //         // ذخیره وضعیت در localStorage
-    //         localStorage.setItem('otpState', 'true');
-    //         localStorage.setItem('otpPhone', phoneValue);
+            setIsResetCode(false)
+            setShowOtp(true);
+            setSavedPhone(phoneValue);
+            startTimer();
+            ``
+            // ذخیره وضعیت در localStorage
+            localStorage.setItem('otpState', 'true');
+            localStorage.setItem('otpPhone', phoneValue);
 
-    //     },
-    // });
+        },
+    });
 
     // NOTE checkOtp code
     // const { mutate: checkOTPCode, isLoading: checkOTPCodeLoading } = CheckOtpCode({
@@ -154,6 +155,8 @@ const Login = () => {
     };
 
     const onSubmit = (data) => {
+        console.log("data", data);
+
         // login(data)
     }
 
@@ -178,13 +181,12 @@ const Login = () => {
                             onClick={handleEditPhone}
                             className="text-[0.8rem] cursor-pointer hover:underline">ویرایش شماره</p>
                     </div>
-                    {/* <LoginOtp checkOTPCode={checkOTPCode} checkOTPCodeLoading={checkOTPCodeLoading} isResetCode={isResetCode} /> */}
-                    <LoginOtp />
+                    <LoginOtp checkOTPCode={checkOTPCode} checkOTPCodeLoading={checkOTPCodeLoading} isResetCode={isResetCode} />
+                    {/* <LoginOtp /> */}
 
                     {/* NOTE remaining time */}
                     <div className="w-full flex items-center justify-between ">
                         <p className="text-[0.8rem]">زمان باقی مانده :</p>
-                        {/* <p className="text-[1rem]">1:32</p> */}
                         {timeLeft > 0 ? (
                             <div className="flex items-center gap-2">
                                 <span className="text-[0.9rem] text-primary">
@@ -214,7 +216,7 @@ const Login = () => {
                     />
                 </> : <>
                     <Controller
-                        name="phone"
+                        name="mobile"
                         control={control}
                         // size="small"
                         render={({ field }) => (
@@ -307,41 +309,9 @@ const Login = () => {
                                         ),
                                     }
                                 }}
-                                // InputProps={{
-                                //     endAdornment: (
-                                //         <InputAdornment position="end">
-                                //             <div
-                                //                 style={{
-                                //                     display: "flex",
-                                //                     alignItems: "center",
-                                //                     gap: "0.75rem",
-                                //                 }}
-                                //             >
-                                //                 <span
-                                //                     style={{
-                                //                         // fontFamily: "Yekan-light",
-                                //                         color: "black",
-                                //                         fontSize: "1rem",
-                                //                         whiteSpace: "nowrap",
-                                //                     }}
-                                //                 >
-                                //                     phone
-                                //                 </span>
-                                //                 <span
-                                //                     style={{
-                                //                         width: "1px",
-                                //                         height: "1.5rem",
-                                //                         borderLeft: "1px dashed #B1C7C7",
-                                //                     }}
-                                //                 />
-                                //                 <CiMobile3 className="text-textBase text-[1.5rem]" />
-                                //             </div>
-                                //         </InputAdornment>
-                                //     ),
-                                // }}
                                 className={`w-full`}
-                                error={errors.phone}
-                                helperText={(!!errors.phone && errors?.phone?.message)}
+                                error={errors.mobile}
+                                helperText={(!!errors.mobile && errors?.mobile?.message)}
                             />
                         )}
                     />
