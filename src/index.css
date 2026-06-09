@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+body {
+    color: #132357 !important;
+    direction: rtl;
+    margin: 0 !important;
+    padding: 0px !important;
+    overflow-y: auto !important;
+    font-family: "Yekan Bakh FaNum", 'rokh' !important;
+    background-color: #e9edf4;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    ::-webkit-scrollbar {
+        height: 12px;
+    }
+
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f3f5f8;
+        border-radius: 100px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        height: 2px;
+        background: #dce2e6;
+        border-radius: 50px;
+    }
+}
+
+@theme {
+    --color-main: #00eb93;
+    --color-mainLight: #30eca5;
+    --color-mainDark: #00be77;
+    --color-secondary: #57534D;
+    --color-secondaryLight: #79716B;
+    --color-info: #8DA2C6;
+    --color-infoDark: #7474C1;
+    --color-infoLight: #AEBCD3;
+    --color-disable: #9da6ad;
+    --color-textBase: #162864;
+
+    /* --color-blue: #175CF0;
+  --color-error: #E16037;
+  --color-danger: #C80930;
+  --color-textBase: #132357;
+  --color-green: #4caf50;
+  --color-greenLight: #81c784;
+  --color-greenDark: #388e3c; */
+
+    --font-yekan: "Yekan Bakh FaNum", sans-serif;
+    --font-rokh: "rokh", sans-serif;
+}
