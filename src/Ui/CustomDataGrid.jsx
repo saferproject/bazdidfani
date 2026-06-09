@@ -28,6 +28,7 @@ function CustomNoResultsOverlay() {
   return (
     <StyledGridOverlay>
       <img src={noDataImg} width={350} height={350} alt="no data" />
+      {/* <p>sssss</p> */}
     </StyledGridOverlay>
   );
 }
@@ -61,6 +62,7 @@ const CustomDataGrid = ({
               },
             }}
             slots={{
+              noRowsOverlay: CustomNoResultsOverlay,
               noResultsOverlay: CustomNoResultsOverlay,
             }}
             sx={{
@@ -94,10 +96,11 @@ const CustomDataGrid = ({
               },
             }}
             slots={{
+              noRowsOverlay: CustomNoResultsOverlay,
               noResultsOverlay: CustomNoResultsOverlay,
             }}
             sx={{
-              fontSize: '12px',
+              fontSize: '13px',
               ".MuiDataGrid-virtualScroller": {
                 overflow: "auto",
                 ...(maxHeight ? { maxHeight: `${maxHeight} !important` } : {}),
@@ -113,6 +116,7 @@ const CustomDataGrid = ({
             hideFooter
             loading={loading}
             paginationMode="server"
+            
             autoHeight={autoHeight}  // ✅ اضافه کن
             {...others}
           />
@@ -120,12 +124,32 @@ const CustomDataGrid = ({
       </div>
       {pagination?.isPresent && (
         <Pagination
-          variant="outlined"
-          className="my-3 !mx-auto w-fit"
+          shape="rounded"
+          size="medium"
+          className="my-4 !mr-auto w-fit"
           count={pagination?.lastPage}
-          color="primary"
+          color="secondary"
           onChange={pagination.pageChangeHandler}
           page={pagination.page}
+          sx={{
+            '& .MuiPaginationItem-root': {
+              borderRadius: '10px',
+              fontSize: "16px",
+
+            },
+            // استایل برای صفحات غیرفعال (که انتخاب نشدن)
+            '& .MuiPaginationItem-page:not(.Mui-selected)': {
+              backgroundColor: '#f5f5f5', // پس زمینه
+              border: '1px solid #e0e0e0', // بوردر
+              color: '#132357', // رنگ فونت
+              fontFamily: "yekan-bold",
+              fontSize: "16px",
+            },
+            // هاور برای صفحات غیرفعال
+            '& .MuiPaginationItem-page:not(.Mui-selected):hover': {
+              backgroundColor: '#e8e8e8',
+            },
+          }}
         />
       )}
     </div>

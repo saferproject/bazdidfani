@@ -12,6 +12,7 @@ export default function DatePickerComponent({
   size = "medium",
   error = false,
   errorMessage,
+  width: width,
   ...other
 }) {
   const classes = useStyles();
@@ -35,7 +36,12 @@ export default function DatePickerComponent({
               {...field}
               {...other}
               slotProps={{
-                textField: { size: size },
+                textField: {
+                  size: size,
+                  InputProps: {
+                    style: { backgroundColor: "white", borderRadius: "10px", width: width }
+                  }
+                },
                 field: { clearable: true },
               }}
               timezone="Asia/Tehran"
@@ -46,7 +52,10 @@ export default function DatePickerComponent({
                   borderRadius: size === "small" ? "10px" : "17px",
                   borderColor: error ? "#C80930" : "oklch(92% 0.004 286.32)",
                   fontSize: "14px",
-                  height: size === "small" ? "47px" : "100%",
+                  height: size === "small" ? "45px" : "100%",
+                },
+                "& .MuiInputLabel-root": {
+                  fontSize: "13px", // سایز label شناور
                 },
 
               }}

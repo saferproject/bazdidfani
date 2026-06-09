@@ -4,7 +4,7 @@ import { MdDelete } from "react-icons/md";
 import { GrCloudUpload } from "react-icons/gr";
 import { IoClose } from "react-icons/io5";
 import { LuFullscreen } from "react-icons/lu";
-import { DeleteImage } from "../API/EndPoints/ShareAPI";
+// import { DeleteImage } from "../API/EndPoints/ShareAPI";
 
 const UploadImage = ({
   onUploadSuccess,
@@ -107,16 +107,16 @@ const UploadImage = ({
   }
 
   // ❌ حذف تصویر
-  const { mutate: deleteImage, isLoading: deleteImageLoading } = DeleteImage({
-    id: imageData?.id,
-    invalidKey: invalidKey,
-  });
+  // const { mutate: deleteImage, isLoading: deleteImageLoading } = DeleteImage({
+  //   id: imageData?.id,
+  //   invalidKey: invalidKey,
+  // });
 
   const handleRemoveImage = (event) => {
     event.stopPropagation();
-    if (imageData?.id) {
-      deleteImage();
-    }
+    // if (imageData?.id) {
+    //   deleteImage();
+    // }
     if (previewUrl) URL.revokeObjectURL(previewUrl);
     setSelectedFile(null);
     setPreviewUrl(null);
@@ -246,11 +246,9 @@ const UploadImage = ({
               {/* حذف */}
               {!disabled && (
                 <Box
-                  onClick={!deleteImageLoading ? handleRemoveImage : undefined}
+                  onClick={ handleRemoveImage }
                   sx={{
-                    backgroundColor: deleteImageLoading
-                      ? "rgba(0,0,0,0.5)"
-                      : "error.main",
+                    backgroundColor: "error.main",
                     color: "white",
                     borderRadius: "50%",
                     width: "32px",
@@ -258,21 +256,17 @@ const UploadImage = ({
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    cursor: deleteImageLoading ? "default" : "pointer",
+                    cursor: "pointer",
                     transition: "all 0.2s ease",
                     "&:hover": {
-                      backgroundColor: !deleteImageLoading
-                        ? "error.dark"
-                        : "rgba(0,0,0,0.5)",
-                      transform: !deleteImageLoading ? "scale(1.1)" : "none",
+                      backgroundColor: "rgba(0,0,0,0.5)",
+                      transform: "none",
                     },
                   }}
                 >
-                  {deleteImageLoading ? (
-                    <CircularProgress size={18} thickness={5} sx={{ color: "white" }} />
-                  ) : (
+                
                     <MdDelete size={18} />
-                  )}
+                
                 </Box>
               )}
             </Box>
@@ -294,7 +288,7 @@ const UploadImage = ({
               />
               {/* 🆕 دکمه آپلود شناور دینامیک */}
               <span
-                className="bg-warning rounded-full shadow-md absolute z-10 flex items-center justify-center"
+                className="bg-main rounded-full shadow-md absolute z-10 flex items-center justify-center"
                 style={{
                   width: badgeSize,
                   height: badgeSize,

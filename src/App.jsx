@@ -1,16 +1,15 @@
-import Router from "./Routes/Routes.jsx";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import rtlPlugin from '@mui/stylis-plugin-rtl';
-import { CacheProvider } from "@emotion/react";
+import './App.css'
 import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
-import { QueryClient, QueryClientProvider } from "react-query";
-import Tostify from "./Ui/Tostify.jsx";
-import { AuthProvider } from "./Context/ContextApi.jsx";
-// import { Provider } from "react-redux";
-// import { store } from "./reduxToolkit/store";
+import rtlPlugin from '@mui/stylis-plugin-rtl';
+import { CacheProvider } from "@emotion/react";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { faIR as faIR_ } from "@mui/x-data-grid/locales";
-import LoadingDialog from "./Ui/LoadingDialog.jsx";
+// import LoadingDialog from "./UI/LoadingDialog.jsx";
+import Tostify from "./UI/Tostify.jsx";
+import Router from "./Routes/Routes.jsx";
+import { AuthProvider } from './Context/ContextApi.jsx';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 const App = () => {
   const cacheRTL = createCache({
@@ -75,28 +74,28 @@ const App = () => {
     },
     palette: {
       primary: {
-        light: "#30eca5",
-        main: "#00eb93",
-        dark: "#00be77",
+        main: "#FDC13C",
+        light: "#FEECC5"
       },
       secondary: {
-        light: "#79716B",
-        main: "#57534D",
-        contrastText: "#fff",
-      },
-
-      info: {
-        light: "#AEBCD3",
-        main: "#8DA2C6",
-        dark: "#7474C1",
-        contrastText: "#fff",
-      },
-      text: {
-        disabled: "#9da6ad",
-      },
+        main: "#175CF0"
+      }, error: {
+        main: "#C80930",
+      }, danger: {
+        main: "#E16037"
+      }, warning: {
+        main: "#FFBE11",
+      }, disable: {
+        main: "#919BB3",
+      }, info: {
+        main: "#61C4FF",
+      },green: {
+        main: "#4caf50",
+        light: "#81c784",
+        dark: "#388e3c"
+      }
     },
   });
-
 
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -113,7 +112,7 @@ const App = () => {
         <AuthProvider>
           <CacheProvider value={cacheRTL}>
             <ThemeProvider theme={theme}>
-              <LoadingDialog />
+              {/* <LoadingDialog /> */}
               <Tostify />
               <Router />
             </ThemeProvider>
@@ -121,7 +120,7 @@ const App = () => {
         </AuthProvider>
       </QueryClientProvider>
     </>
-  );
-};
+  )
+}
 
 export default App;

@@ -200,7 +200,7 @@ const MultiImageSelect = ({
                             onClick={handleAddImage}
                             className="w-[5rem] h-[5rem] bg-contain bg-no-repeat hover:scale-105 active:scale-95 duration-200 transition-all cursor-pointer"
                             style={{
-                                backgroundImage: 'url("../../images/multiImagePlacaeholder.png")',
+                                backgroundImage: 'url("../../public/images/imageUploader2.png")',
                             }}
                         >
                             <p className="mr-2 text-zinc-400 font-bold">{value.length + 1}</p>

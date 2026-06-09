@@ -166,13 +166,13 @@ const MulitSelect = ({
                                 InputProps={{
                                     ...params.InputProps,
                                     endAdornment: (
-                                        <>
-                                            {isLoading && <CircularProgress color="primary" size={20} />}
-                                            {endIcon && <InputAdornment position="end">{endIcon}</InputAdornment>}
-                                            {params.InputProps.endAdornment}
-                                        </>
+                                      <>
+                                        {isLoading && <CircularProgress color="primary" size={20} />}
+                                        {endIcon && <InputAdornment position="end">{endIcon}</InputAdornment>}
+                                        {params.InputProps.endAdornment}
+                                      </>
                                     ),
-                                }}
+                                  }}
                             />
                         )}
                     />

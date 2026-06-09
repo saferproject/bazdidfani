@@ -48,7 +48,7 @@ const CustomButton = ({
             }}
             className={`p-0 ${className}`}
         >
-            {(endIcon || startIcon) ? (
+            {loading ? null : (endIcon || startIcon) ? (
                 <div className="flex justify-between items-center w-full">
                     {content}
                 </div>

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { useAuthContext } from "../Context/ContextApi";
 
-export const BASE_URL = "http://192.168.0.209:8001/api/"; //local
+export const BASE_URL = "http://192.168.100.10:8000/api/"; //local
 // export const BASE_URL = "https://api.peykad.ir/api"; //server
 
 const axiosInstance = axios.create({

@@ -11,7 +11,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Controller } from "react-hook-form";
 import { FormHelperText } from "@mui/material";
 import { faIR as datePickerFaIR } from "@mui/x-date-pickers/locales";
-
+import { renderTimeViewClock } from "@mui/x-date-pickers/timeViewRenderers";
 export default function DateTimePickerComponent({
   error = false,
   control,
@@ -21,6 +21,7 @@ export default function DateTimePickerComponent({
   height,
   disabled,
   helperText,
+  withTimeClock = false,
   ...other
 }) {
   // const classes = useStyles();
@@ -50,6 +51,12 @@ export default function DateTimePickerComponent({
                   {...field}
                   {...other}
                   defaultValue={null}
+                  viewRenderers={
+                    withTimeClock &&
+                    {
+                      hours: renderTimeViewClock,
+                      minutes: renderTimeViewClock,
+                    }}
                   format="HH:mm yyyy/MM/dd"
                   disabled={disabled}
                   label={label}
@@ -62,8 +69,31 @@ export default function DateTimePickerComponent({
                     },
                   }}
                   slotProps={{
-                    field: { clearable: true },
-                    textField: { fullWidth: true },
+                    popper: {
+                      placement: "auto",
+                      modifiers: [
+                        {
+                          name: "flip",
+                          enabled: true,
+                        },
+                        {
+                          name: "preventOverflow",
+                          enabled: true,
+                        },
+                      ],
+                    },
+                    toolbar: withTimeClock &&  {
+                      hidden: false,
+                      toolbarFormat: "HH:mm",
+                      sx: {
+                        minHeight: "20px",
+                        padding: "8px 12px",
+
+                        "& .MuiTypography-root": {
+                          fontSize: "18px",
+                        },
+                      },
+                    },
                   }}
                   className={` !w-full !h-full hidden sm:block !gap-0`}
                 // className={` ${classes.datePicker} ${

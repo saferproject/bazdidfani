@@ -1,70 +1,87 @@
 import { createContext, useContext, useEffect, useState } from "react";
-// import { CheckToken } from "../API/EndPoints/Auth/Auth";
 import { useLocation } from "react-router-dom";
+import { CheckToken } from "../API/Auth/Auth";
 
 const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
-    const location = useLocation();
     const user = JSON?.parse(localStorage?.getItem("user"));
     const token = localStorage?.getItem("authToken");
+    const location = useLocation();
     const [isLoading, setIsLoading] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
-    const [userStatus, setUserStatus] = useState("");
-    const [roles, setRoles] = useState(undefined);
+    // const [userStatus, setUserStatus] = useState(null);
+    // const [roles, setRoles] = useState(undefined);
+    // const [currentCash, setCurrentCash] = useState(null)
+    // const [stepperData, setStepperData] = useState([])
     const [alert, setAlert] = useState({
         type: "success",
         message: "",
         open: false,
     });
+    const [globalDialog, setGlobalDialog] = useState({
+        isOpen: false,
+        size: "sm",
+        contentType: "",
+        selectedItem: null,
+        loading: false,
+        callBackMethod: null,
+    });
+
+    const { isLoading: checkTokenLoading } = CheckToken({
+        enable: !!localStorage.getItem("authToken") && location.pathname !== "/login",
+        // enable: true,
+        onSuccess: ({ data }) => {
+            // if (data?.user) {
+            //     localStorage.setItem("user", JSON?.stringify(data?.user))
+            //     setUserStatus(data?.user)
+            // }
+            // if (data?.permissions?.length) {
+            //     localStorage.setItem("permissions", data?.permissions);
+            // }
+        },
+    });
 
     useEffect(() => {
-        if (user)
-            setRoles((preState) => ({
-                ...preState,
-                isAdmin: user?.roles?.length && user?.roles[0]?.name === "admin",
-                isSuperAdmin: user?.roles?.length && user?.roles === "SuperAdmin",
-                isPersonnel:
-                    user?.roles?.length && user?.roles[0]?.name === "personnel",
-            }));
-    }, [user?.id]);
+        setIsLoading(checkTokenLoading);
+    }, [checkTokenLoading]);
 
-    const resetRoles = () => {
-        setRoles({
-            isAdmin: false,
-            isSuperAdmin: false,
-            isPersonnel: false,
-        });
-    };
-
-    // const { isLoading: checkTokenLoading } = CheckToken({
-    //     enable: !!token && location.pathname !== "/login",
-    //     onSuccess: ({ data }) => {
-    //         if (data?.permissions?.length) {
-    //             localStorage.setItem("permissions", data?.permissions);
-    //             // SetItem("user", JSON?.stringify(data?.user))
-    //         }
-    //     },
-    // });
 
     // useEffect(() => {
-    //     setIsLoading(checkTokenLoading);
-    // }, [checkTokenLoading]);
+    //     const user = JSON?.parse(localStorage?.getItem("user"));
+    //     const token = localStorage?.getItem("authToken");
+    //     if (user) {
+    //         const roleName = user.role;
+
+    //         setRoles({
+    //             isAdmin: roleName === "admin",
+    //             isSuperAdmin: roleName === "superAdmin",
+    //             isUser: !["admin", "superAdmin"].includes(roleName),
+    //         });
+    //     } else {
+    //         resetRoles();
+    //     }
+    // }, []);
+
+    // const resetRoles = () => {
+    //     setRoles({
+    //         isAdmin: false,
+    //         isSuperAdmin: false,
+    //         isUser: false,
+    //     });
+    // };
 
     return (
         <div style={{ direction: "rtl" }}>
             <AuthContext.Provider
                 value={{
+                    user,
                     setIsLoading,
                     isLoading,
-                    isOpen,
-                    setIsOpen,
-                    userStatus,
-                    setUserStatus,
+                    globalDialog,
+                    setGlobalDialog,
                     setAlert,
                     alert,
-                    resetRoles,
-                    roles,
+                    // resetRoles,
                 }}
             >
                 {children}
@@ -77,6 +94,3 @@ export const useAuthContext = () => {
     return useContext(AuthContext);
 };
 
-
-// userInfo
-// setUserInfo

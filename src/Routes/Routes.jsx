@@ -1,24 +1,14 @@
-import { Navigate, Route, Routes } from "react-router-dom";
-// import ProtectedRoute from "./ProtectedRoute/ProtectedRoutes";
-import { useAuthContext } from "../Context/ContextApi";
+import { Route, Routes } from "react-router-dom";
 import {
-    Home,
-} from "../Helpers/Components";
+    HomePage
+} from "../Helpers/Components"
 const Router = () => {
-    // const { roles } = useAuthContext();
     return (
         <>
             <Routes>
-                <Route path="/" element={<Home />} />
-                {/* <Route path="/login" element={
-                    <AuthLayout>
-                        <Login />
-                    </AuthLayout>
-                } />
-                <Route index element={<Navigate to={"login"} replace />} /> */}
-
+                <Route path="/" element={<HomePage />} />
             </Routes>
         </>
-    );
-};
+    )
+}
 export default Router;

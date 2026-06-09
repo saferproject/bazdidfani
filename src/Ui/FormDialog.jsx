@@ -1,15 +1,12 @@
-import { Box, Stack } from "@mui/material";
-import ClearIcon from "@mui/icons-material/Clear";
-import { RiHomeSmile2Fill } from "react-icons/ri";
+import { Box, IconButton, Stack } from "@mui/material";
 import CustomButton from "./Button";
-import { FaArrowLeftLong } from "react-icons/fa6";
-import { RiCloseFill } from "react-icons/ri";
+import { GrFormClose } from "react-icons/gr";
 
 const FormDialog = ({
     children,
     handleCancel,
     title,
-    tinyTitle,
+    customTitle,
     isLoading,
     selectedItem,
     onSubmit,
@@ -17,60 +14,36 @@ const FormDialog = ({
     customComponent,
     customComponentClassName,
     hasTitle = true,
-    hasCloseIcon = false,
     onKeyDown,
     innerComponentClassName = "",
 }) => {
     return (
         <form onKeyDown={onKeyDown} onSubmit={onSubmit} className={className || ""}>
-            <Box className={"py-10 px-10 flex flex-col gap-12 relative" + innerComponentClassName}>
-                {hasCloseIcon ? (
-                    <Box className={"absolute top-3 right-3"}>
-                        <ClearIcon
-                            color="primary"
-                            className="!font-black cursor-pointer"
-                            onClick={() => {
-                                handleCancel();
-                            }}
-                        />
-
-                    </Box>
-                ) : null}
-                {hasTitle ? (
-                    <Stack
-                        direction={"row"}
-                        justifyContent={"space-between"}
-                        gap={2}
-                        alignItems={"center"}
-                    >
-                        <span className="flex items-end gap-12">
-                            <h1 className="min-w-fit font-[yekan-ex-bold] text-baseText">
-                                {title}
-                            </h1>
-                            {tinyTitle && (
-                                <h1 className="pt-1  min-w-fit font-[yekan] text-baseText text-[0.75rem]">
-                                    {selectedItem ? "ویرایش" : "افزودن"} {tinyTitle} {selectedItem ? null : " جدید"}
-                                </h1>
-                            )}
-                        </span>
-                        <Box className={`filter-container ${customComponentClassName}`}>
-                            {customComponent}
-                        </Box>
-                    </Stack>
-                ) : null}
-                <div className="flex relative z-20 overflow-hidden justify-between items-center w-full py-4 px-10  h-16 rounded-[21px] bg-coffie">
-                    <span className="absolute -z-10 -left-2 -bottom-2 border-[0.18rem] border-white w-16 h-16 rounded-full"></span>
-                    <span className="absolute -z-10 left-10 -bottom-6 bg-coffie border-[0.18rem] border-white w-14 h-14 rounded-full"></span>
-                    {/* STUB left balls */}
-                    <span className="flex items-end gap-3 text-baseText">
-                        <RiHomeSmile2Fill className="text-[1.4rem]" />
-                        <p className="text-[0.6rem] font-bold">شما اینجا هستید : {title}  ... {selectedItem ? "ویرایش" : "افزودن"} {tinyTitle} {selectedItem ? null : "جدید"}</p>
-                    </span>
-                    <div className="text-baseText text-[0.9rem] font-[yekan-bold]">
-                        {/* NOTE جای برای نوشتن متنی */}
-
+            <Box className={"p-15 flex flex-col gap-10 relative" + innerComponentClassName}>
+                <div className="flex w-full items-center justify-between">
+                    <div className="flex gap-4 items-center">
+                        <IconButton onClick={() => handleCancel()} className="!bg-main !text-black !w-7 !h-7 !rounded-full" aria-label="delete" size="small">
+                            <GrFormClose className="!text-[4rem]" />
+                        </IconButton>
+                        <h1 className="min-w-fit font-[yekan-bold] text-textBase">
+                            {customTitle ? customTitle : selectedItem ? (<>ویرایش {title}</>) : (<>افزودن {title}</>)}
+                        </h1>
                     </div>
+                    {hasTitle ? (
+                        <Stack
+                            direction={"row"}
+                            justifyContent={"space-between"}
+                            gap={2}
+                            alignItems={"center"}
+                        >
+
+                            <Box className={`filter-container ${customComponentClassName}`}>
+                                {customComponent}
+                            </Box>
+                        </Stack>
+                    ) : null}
                 </div>
+
                 {children}
                 <Stack
                     direction={"row"}
@@ -79,8 +52,25 @@ const FormDialog = ({
                     gap={2}
                     className="!mr-auto w-full mt-5">
                     <CustomButton
-                        className="w-36 "
+                        bgColor={"secondary.main"}
+                        className={`w-60 !shadow-none`}
+                        type="submit"
+                        loading={isLoading}
+                        radius="15px"
+                        height={"60px"}
+                        content={<>
+                            {!isLoading && (
+                                <div className="w-full flex justify-between items-center px-1">
+                                    <p className="text-[1rem] font-[yekan-ex-bold] text-white">{selectedItem ? "ویرایش" : "ثـــبـت"}</p>
+                                    <img className="w-5" src="../../images/arrowConfirm.svg" alt="submit image" />
+                                </div>
+                            )}
+                        </>}
+                    />
+                    {/* <CustomButton
+                        className={`w-55 !shadow-none`}
                         disable={isLoading}
+                        height={"50px"}
                         onClick={() => {
                             handleCancel();
                         }}
@@ -89,25 +79,12 @@ const FormDialog = ({
                             backgroundColor: 'danger.main'
                         }}
                         content={<>
-                            <div className="w-full flex justify-between items-center py-2 px-1">
-                                <p className="text-[0.85rem]">انصراف</p>
-                                <RiCloseFill className="text-[1rem]" />
+                            <div className="w-full flex justify-between items-center px-1 text-white">
+                                <p className="text-[0.95rem]">انصراف</p>
+                                <RiCloseFill className="text-[1.2rem]" />
                             </div>
                         </>}
-                    />
-                    <CustomButton
-                        className={`w-36 ${!isLoading && "!border-b-[2px] !border-[#007F82]"}`}
-                        type="submit"
-                        loading={isLoading}
-
-                        radius="17px"
-                        content={<>
-                            <div className="w-full flex justify-between items-center py-2 px-1">
-                                <p className="text-[0.85rem]">{selectedItem ? "ویرایش" : "ثبت"}</p>
-                                <FaArrowLeftLong className="text-[1rem]" />
-                            </div>
-                        </>}
-                    />
+                    /> */}
                 </Stack>
             </Box>
         </form>

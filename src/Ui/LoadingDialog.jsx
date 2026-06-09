@@ -1,6 +1,8 @@
 import { Dialog } from "@mui/material";
 import { useAuthContext } from "../Context/ContextApi";
-import spinner1 from "../../public/images/spinner1.gif"
+import spinnerLoading from "../../public/images/spinnerLoading.svg"
+import spinner2 from "../../public/images/spinner2.svg"
+
 const LoadingDialog = () => {
     const { isLoading } = useAuthContext();
 
@@ -23,10 +25,10 @@ const LoadingDialog = () => {
                     }
                 }}
             >
-                <div className="bg-white w-[50%] mx-auto rounded-[35px] flex flex-col gap-4 py-4 items-center">
-                    <img className="w-24" src={spinner1} alt="" />
-                    <h1 className="text-main font-[alibaba] text-[1.5rem]">دنــتالاین ...</h1>
-                    <p>لطفا صبر بنمایید 😊 </p>
+                <div className="bg-white w-[50%] mx-auto rounded-[35px] flex flex-col  pb-10 items-center">
+                    <img className="w-24" src={spinner2} alt="" />
+                    <h1 className="text-main font-[alibaba-bold] text-[1.5rem] mb-3">پیکاد ...</h1>
+                    <p className="font-[yekan-bold]">لطفا صبر بنمایید 😊 </p>
                 </div>
             </Dialog>
         </>

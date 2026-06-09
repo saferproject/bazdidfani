@@ -26,7 +26,7 @@ const DeleteItem = ({ handleDelete, handleCancel, isLoading, text = "" }) => {
                     <Typography
                         variant="h1"
                         gutterBottom
-                        className="!text-[22px] !font-black !mb-0"
+                        className="!text-[20px] !font-black !mb-0"
                         color={"error"}
                     >
                         آیا از حذف آیتم انتخاب شده اطمینان دارید؟
@@ -35,8 +35,8 @@ const DeleteItem = ({ handleDelete, handleCancel, isLoading, text = "" }) => {
                 <Typography
                     variant="body1"
                     gutterBottom
-                    className="!text-[15px] !font-black !mb-0 !mr-14 !mt-4"
-                    color={"primary.light"}
+                    className="!text-[14px] !font-black !mb-0 !mr-14 !mt-4"
+                    color={"secondary.main"}
                 >
                     {text || "با حذف این رکورد تمامی فیلدهای آیتم انتخاب شده حذف میشود"}
                 </Typography>

@@ -1,18 +1,1 @@
-export { default as Home } from "../Pages/Home.jsx"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export { default as HomePage } from "../Pages/HomePage"
