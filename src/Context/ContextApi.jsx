@@ -9,10 +9,7 @@ export const AuthProvider = ({ children }) => {
     const token = localStorage?.getItem("authToken");
     const location = useLocation();
     const [isLoading, setIsLoading] = useState(false);
-    // const [userStatus, setUserStatus] = useState(null);
-    // const [roles, setRoles] = useState(undefined);
-    // const [currentCash, setCurrentCash] = useState(null)
-    // const [stepperData, setStepperData] = useState([])
+    const [userData, setUserData] = useState(null);
     const [alert, setAlert] = useState({
         type: "success",
         message: "",
@@ -81,7 +78,8 @@ export const AuthProvider = ({ children }) => {
                     setGlobalDialog,
                     setAlert,
                     alert,
-                    // resetRoles,
+                    userData,
+                    setUserData,
                 }}
             >
                 {children}

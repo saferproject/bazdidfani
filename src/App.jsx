@@ -31,12 +31,12 @@ const App = () => {
             color: "#162864",
             overflow: "hidden",
             border: "1px solid #e0e0e0",
-            fontFamily: '"Yekan-bold",roboto !important', // اضافه کردن !important
+            fontFamily: '"Yekan Bakh FaNum",roboto !important', // اضافه کردن !important
           },
           cell: {
             color: "#162864",
             fontWeight: "normal !important",
-            fontFamily: '"Yekan-bold", roboto !important', // اضافه کردن !important
+            fontFamily: '"Yekan Bakh FaNum", roboto !important', // اضافه کردن !important
             position: "relative",
             "&:not(:last-child)::after": {
               content: '""',
@@ -50,7 +50,7 @@ const App = () => {
           },
           columnHeader: {
             fontWeight: "600 !important",
-            fontFamily: '"Yekan-bold",roboto !important', // اضافه کردن !important
+            fontFamily: '"Yekan Bakh FaNum",roboto !important', // اضافه کردن !important
             backgroundColor: "#fafafa",
             color: "#162864",
             "&:focus": {
@@ -69,31 +69,30 @@ const App = () => {
       }
     },
     typography: {
-      fontFamily: "Yekan",
+      fontFamily: "Yekan Bakh FaNum",
       color: "#162864"
     },
     palette: {
       primary: {
-        main: "#FDC13C",
-        light: "#FEECC5"
+        light: "#30eca5",
+        main: "#00eb93",
+        dark: "#00be77",
       },
       secondary: {
-        main: "#175CF0"
-      }, error: {
-        main: "#C80930",
-      }, danger: {
-        main: "#E16037"
-      }, warning: {
-        main: "#FFBE11",
-      }, disable: {
-        main: "#919BB3",
-      }, info: {
-        main: "#61C4FF",
-      },green: {
-        main: "#4caf50",
-        light: "#81c784",
-        dark: "#388e3c"
-      }
+        light: "#79716B",
+        main: "#57534D",
+        contrastText: "#fff",
+      },
+
+      info: {
+        light: "#AEBCD3",
+        main: "#8DA2C6",
+        dark: "#7474C1",
+        contrastText: "#fff",
+      },
+      text: {
+        disabled: "#9da6ad",
+      },
     },
   });
 

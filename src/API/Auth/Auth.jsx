@@ -11,3 +11,13 @@ export const CheckToken = ({ onSuccess, onError, enable }) => {
   });
   return useQuery;
 };
+
+export const LoginAPI = ({ onSuccess }) => {
+  const useMutation = useAxiosMutation({
+    method: "POST",
+    url: "login",
+    config: {},
+    onSuccess,
+  });
+  return useMutation;
+};
